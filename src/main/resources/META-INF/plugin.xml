@@ -1,6 +1,6 @@
 <idea-plugin>
-    <id>com.github.konbluesky.javadesignpatternhelperideaplugin</id>
-    <name>java-design-pattern-helper-idea-plugin</name>
+    <id>com.github.konbluesky.jdph</id>
+    <name>Java Design Pattern Helper</name>
     <vendor>konbluesky</vendor>
 
     <!-- Product and plugin compatibility requirements -->
@@ -8,12 +8,21 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.konbluesky.javadesignpatternhelperideaplugin.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.konbluesky.javadesignpatternhelperideaplugin.services.MyProjectService"/>
+        <applicationService serviceImplementation="com.github.konbluesky.jdph.services.MyApplicationService"/>
+        <projectService serviceImplementation="com.github.konbluesky.jdph.services.MyProjectService"/>
     </extensions>
 
     <applicationListeners>
-        <listener class="com.github.konbluesky.javadesignpatternhelperideaplugin.listeners.MyProjectManagerListener"
+        <listener class="com.github.konbluesky.jdph.listeners.MyProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
+<!--    <extensions defaultExtensionNs="com.intellij">-->
+<!--        <applicationService serviceImplementation="com.github.konbluesky.javadesignpatternhelperideaplugin.services.MyApplicationService"/>-->
+<!--        <projectService serviceImplementation="com.github.konbluesky.javadesignpatternhelperideaplugin.services.MyProjectService"/>-->
+<!--    </extensions>-->
+
+<!--    <applicationListeners>-->
+<!--        <listener class="com.github.konbluesky.javadesignpatternhelperideaplugin.listeners.MyProjectManagerListener"-->
+<!--                  topic="com.intellij.openapi.project.ProjectManagerListener"/>-->
+<!--    </applicationListeners>-->
 </idea-plugin>
