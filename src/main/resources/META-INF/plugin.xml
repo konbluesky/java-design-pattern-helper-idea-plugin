@@ -16,13 +16,23 @@
         <listener class="com.github.konbluesky.jdph.listeners.MyProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
-<!--    <extensions defaultExtensionNs="com.intellij">-->
-<!--        <applicationService serviceImplementation="com.github.konbluesky.javadesignpatternhelperideaplugin.services.MyApplicationService"/>-->
-<!--        <projectService serviceImplementation="com.github.konbluesky.javadesignpatternhelperideaplugin.services.MyProjectService"/>-->
-<!--    </extensions>-->
 
-<!--    <applicationListeners>-->
-<!--        <listener class="com.github.konbluesky.javadesignpatternhelperideaplugin.listeners.MyProjectManagerListener"-->
-<!--                  topic="com.intellij.openapi.project.ProjectManagerListener"/>-->
-<!--    </applicationListeners>-->
+
+    <extensions defaultExtensionNs="com.intellij">
+        <projectConfigurable instance="com.github.konbluesky.jdph.ui.AppSettingsPage"
+                             id="com.github.konbluesky.jdph.ui.AppSettingsPage"
+                             displayName="Java Design Pattern"/>
+        <projectService serviceImplementation="com.github.konbluesky.jdph.setting.AppSettingsState"/>
+    </extensions>
+    <actions>
+        <action id="AnalysisJDPHProject" class="com.github.konbluesky.jdph.action.AnalysisJDPHProject"
+                text="Analysis JDPH Project"
+                description="Analysis JDPH Project">
+        </action>
+        <group id="JDPH-plugin" popup="true" text="JDPH Command">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+            <separator/>
+            <reference ref="AnalysisJDPHProject"/>
+        </group>
+    </actions>
 </idea-plugin>

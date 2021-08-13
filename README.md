@@ -1,3 +1,12 @@
+# 关于设计模式的IDEA插件
+
+
+https://plugins.jetbrains.com/docs/intellij/welcome.html
+https://intellij-support.jetbrains.com/hc/en-us/community/posts/360001508700-Use-action-of-another-plugin-inside-my-plugin
+https://intellij-support.jetbrains.com/hc/en-us/community/posts/206780745-Is-it-possible-to-trigger-function-action-of-another-plugin-from-a-plugin-
+
+
+
 # java-design-pattern-helper-idea-plugin
 
 ![Build](https://github.com/konbluesky/java-design-pattern-helper-idea-plugin/workflows/Build/badge.svg)

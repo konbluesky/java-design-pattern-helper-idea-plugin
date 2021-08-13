@@ -9,7 +9,6 @@ public class MyProjectManagerListener implements ProjectManagerListener {
 
     @Override
     public void projectOpened(@NotNull Project project) {
-        System.out.println("Project is opened");
-        project.getService(MyProjectService.class);
+
     }
 }

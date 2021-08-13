@@ -24,11 +24,21 @@ version = properties("pluginVersion")
 
 // Configure project's dependencies
 repositories {
+    //use aliyun repo
+    //https://blog.csdn.net/caoshen2014/article/details/103848552
+    maven {
+        setUrl("https://maven.aliyun.com/nexus/content/groups/public/")
+    }
     mavenCentral()
 }
 dependencies {
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.17.1")
+    implementation("com.google.guava:guava:30.1.1-jre")
+    implementation("org.projectlombok:lombok:1.18.20")
+    //https://blog.csdn.net/fxtxz2/article/details/104814715
+    annotationProcessor("org.projectlombok:lombok:1.18.20")
 }
+
 
 // Configure gradle-intellij-plugin plugin.
 // Read more: https://github.com/JetBrains/gradle-intellij-plugin
