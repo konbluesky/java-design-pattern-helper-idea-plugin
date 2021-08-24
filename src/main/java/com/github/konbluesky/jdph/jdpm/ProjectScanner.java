@@ -1,5 +1,6 @@
 package com.github.konbluesky.jdph.jdpm;
 
+import com.google.common.collect.Sets;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
@@ -7,8 +8,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 /**
  * <p> @Date : 2021/8/11 </p>
@@ -20,7 +21,7 @@ import java.util.List;
 @Slf4j
 public class ProjectScanner {
 
-    private static String[] excludesDir = { "localization", ".mvn", ".git", ".idea", ".github", ".circleci" };
+    private static Set<String> excludeDirectory = Sets.newHashSet("localization", ".mvn", ".git", ".idea", ".github", ".circleci");
 
     private String jdphFullPath;
 
@@ -30,7 +31,7 @@ public class ProjectScanner {
 
     public ProjectScanner(String jdphFullPath, String... excludesDir) {
         this.jdphFullPath = jdphFullPath;
-        this.excludesDir = excludesDir;
+        excludeDirectory = Sets.newHashSet(excludesDir);
     }
 
     public List<ProjectItem> scan() {
@@ -42,10 +43,9 @@ public class ProjectScanner {
                  .filter(path -> path.toFile()
                                      .isDirectory())
                  //排除无效文件夹
-                 .filter(path -> !Arrays.asList(excludesDir)
-                                        .contains(path.getName(path.getNameCount() - 1)
-                                                      .toFile()
-                                                      .getName()))
+                 .filter(path -> !excludeDirectory.contains(path.getName(path.getNameCount() - 1)
+                                                                .toFile()
+                                                                .getName()))
                  .forEach(p -> {
                      projects.add(new ProjectItem(p.toAbsolutePath()
                                                    .toString()));

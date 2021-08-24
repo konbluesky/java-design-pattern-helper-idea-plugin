@@ -23,16 +23,16 @@
                              id="com.github.konbluesky.jdph.ui.AppSettingsPage"
                              displayName="Java Design Pattern"/>
         <projectService serviceImplementation="com.github.konbluesky.jdph.setting.AppSettingsState"/>
+
+        <errorHandler implementation="com.github.konbluesky.jdph.setting.JDPHErrorReportSubmitter"/>
     </extensions>
     <actions>
-        <action id="AnalysisJDPHProject" class="com.github.konbluesky.jdph.action.AnalysisJDPHProject"
-                text="Analysis JDPH Project"
-                description="Analysis JDPH Project">
-        </action>
+        <action id="ShowMainDialogAction" class="com.github.konbluesky.jdph.action.ShowMainDialogAction"
+                text="ShowMainDialogAction" description="View main window"/>
         <group id="JDPH-plugin" popup="true" text="JDPH Command">
             <add-to-group group-id="ToolsMenu" anchor="first"/>
             <separator/>
-            <reference ref="AnalysisJDPHProject"/>
+            <reference ref="ShowMainDialogAction"/>
         </group>
     </actions>
 </idea-plugin>

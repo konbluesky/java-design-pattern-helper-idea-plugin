@@ -9,4 +9,5 @@ package com.github.konbluesky.jdph.setting;
 public interface JDPConstants {
 
     String JAVA_DESIGN_PATTERN_PROJECT_URL = "https://github.com/iluwatar/java-design-patterns";
+    String JAVA_DESIGN_PATTERN_PROJECT_PATH = "/Users/konbluesky/work/java-design-patterns";
 }

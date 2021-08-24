@@ -22,4 +22,12 @@ public class JDPHProject {
     public JDPHProject(String fullPath) {
         this.fullPath = fullPath;
     }
+
+    public ProjectItem getProject(String projectName) {
+        return projects.stream()
+                       .filter(projectItem -> projectItem.getProjectName()
+                                                         .equalsIgnoreCase(projectName))
+                       .findAny()
+                       .get();
+    }
 }

@@ -16,7 +16,7 @@ public class NotifyUtils {
 
 
     /**
-     * 消息
+     * notify message
      *
      * @param project
      * @param message
@@ -31,7 +31,7 @@ public class NotifyUtils {
     }
 
     /**
-     * 推送消息哦
+     * push message
      *
      * @param project
      * @param message

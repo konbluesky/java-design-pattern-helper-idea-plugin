@@ -1,7 +1,6 @@
 package com.github.konbluesky.jdph.ui;
 
 import com.github.konbluesky.jdph.setting.AppSettingsState;
-import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.project.Project;
@@ -34,7 +33,7 @@ public class AppSettingsPage implements Configurable {
 
     public AppSettingsPage(Project project) {
         this.project = project;
-        settings = ServiceManager.getService(project, AppSettingsState.class);
+        settings = AppSettingsState.getInstance(project);
     }
 
     @Override
@@ -50,7 +49,8 @@ public class AppSettingsPage implements Configurable {
     @Override
     public boolean isModified() {
         boolean modify = !jdpPathField.getText()
-                                      .equalsIgnoreCase(settings.javaDesignPatternProjectLocalPath);
+                                      .equalsIgnoreCase(settings.javaDesignPatternProjectLocalPath) || !jdpUrlField.getText()
+                                                                                                                   .equalsIgnoreCase(settings.javaDesignPatternProjectUrl);
         return modify;
     }
 
@@ -62,7 +62,7 @@ public class AppSettingsPage implements Configurable {
 
     @Override
     public void reset() {
-        settings.javaDesignPatternProjectUrl=jdpUrlField.getText();
-        settings.javaDesignPatternProjectLocalPath = jdpPathField.getText();
+        jdpUrlField.setText(settings.javaDesignPatternProjectUrl);
+        jdpPathField.setText(settings.javaDesignPatternProjectLocalPath);
     }
 }
