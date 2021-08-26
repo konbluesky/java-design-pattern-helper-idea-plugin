@@ -14,6 +14,7 @@ https://www.jetbrains.com/help/idea/designing-gui-major-steps.html
 https://github.com/pRivAte12/android-component-explorer
 
 https://github.com/Link-Kou/intellij-treeInfotip
+https://intellij-support.jetbrains.com/hc/en-us/community/posts/115000316704-Create-custom-Tree-View-in-a-Tool-Window
 
 # java-design-pattern-helper-idea-plugin
 

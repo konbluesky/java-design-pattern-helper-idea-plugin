@@ -5,6 +5,7 @@ import com.github.konbluesky.jdph.jdpm.JDPHProject;
 import com.github.konbluesky.jdph.jdpm.ProjectAnalyzer;
 import com.github.konbluesky.jdph.setting.AppSettingsState;
 import com.github.konbluesky.jdph.utils.NotifyUtils;
+import com.intellij.ide.highlighter.JavaFileType;
 import com.intellij.openapi.fileChooser.FileChooserDescriptor;
 import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory;
 import com.intellij.openapi.fileChooser.ex.FileSystemTreeImpl;
@@ -12,6 +13,9 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.DialogWrapper;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.psi.PsiFile;
+import com.intellij.psi.PsiManager;
+import com.intellij.ui.EditorTextField;
 import com.intellij.ui.ListSpeedSearch;
 import com.intellij.ui.components.JBList;
 import com.intellij.ui.treeStructure.Tree;
@@ -20,7 +24,10 @@ import org.jetbrains.annotations.Nullable;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import java.io.File;
+import java.io.IOException;
 
 /**
  * examples:
@@ -49,13 +56,15 @@ public class DesignPatternDialog extends DialogWrapper {
 
     private JScrollPane fileTreeScrollPanel;
 
-    private JTextArea editorTextField;
+    private EditorTextField editorTextField;
 
     private Project project;
 
     private JDPHProject jdphProject;
 
     private AppSettingsState appSettingsState;
+
+    private FileSystemTreeImpl fileSystemTree;
 
     public DesignPatternDialog(@Nullable Project project) {
         super(project, true, DialogWrapper.IdeModalityType.PROJECT);
@@ -90,7 +99,7 @@ public class DesignPatternDialog extends DialogWrapper {
                                                                                                  .getFullPath()));
                 FileChooserDescriptor fileChooserDescriptor = FileChooserDescriptorFactory.createSingleFileOrFolderDescriptor()
                                                                                           .withRoots(selectProject);
-                FileSystemTreeImpl fileSystemTree = new FileSystemTreeImpl(project, fileChooserDescriptor, fileTree, null, null, null);
+                fileSystemTree = new FileSystemTreeImpl(project, fileChooserDescriptor, fileTree, null, null, null);
                 fileSystemTree.updateTree();
                 NotifyUtils.notifyMessage(project, (String) projectList.getSelectedValue());
             }
@@ -98,6 +107,25 @@ public class DesignPatternDialog extends DialogWrapper {
     }
 
     private void initMiddlePanelUI() {
+        fileTree.addTreeSelectionListener(new TreeSelectionListener() {
+
+            @Override
+            public void valueChanged(TreeSelectionEvent e) {
+                if (!fileSystemTree.getSelectedFile()
+                                   .isDirectory()) {
+//                    PsiFile psiFile = PsiManager.getInstance(project)
+//                                                .findFile(fileSystemTree.getSelectedFile());
+                    editorTextField.setFileType(JavaFileType.INSTANCE);
+                    try {
+                        editorTextField.setText(new String(fileSystemTree.getSelectedFile()
+                                                                         .contentsToByteArray()));
+                        editorTextField.setAutoscrolls(true);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 
     /**
@@ -111,20 +139,6 @@ public class DesignPatternDialog extends DialogWrapper {
         initLeftPanelUI();
         initMiddlePanelUI();
         editorTextField.setText("Init TextField");
-
-        //        FileChooserDescriptor fileChooserDescriptor = FileChooserDescriptorFactory.createMultipleFoldersDescriptor();
-        //
-        //        MyFileCellRenderer myFileCellRenderer = new ui.MyFileCellRenderer();
-        //
-        //        FileSystemTreeImpl FileSystemTreeImpl = new FileSystemTreeImpl(
-        //                this.project,
-        //                fileChooserDescriptor,
-        //                defaultTree,
-        //                myFileCellRenderer,
-        //                null,
-        //                null
-        //        );
-
         new ListSpeedSearch(projectList);
         return contentPanel;
     }
