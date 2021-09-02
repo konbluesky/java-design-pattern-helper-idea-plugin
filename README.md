@@ -1,20 +1,17 @@
 # 关于设计模式的IDEA插件
 
-
 https://plugins.jetbrains.com/docs/intellij/welcome.html
 https://intellij-support.jetbrains.com/hc/en-us/community/posts/360001508700-Use-action-of-another-plugin-inside-my-plugin
 https://intellij-support.jetbrains.com/hc/en-us/community/posts/206780745-Is-it-possible-to-trigger-function-action-of-another-plugin-from-a-plugin-
-
 https://stackoverflow.com/questions/9639017/intellij-gui-creator-jpanel-gives-runtime-null-pointer-exception-upon-adding-an/35431318
-
 https://www.tabnine.com/code/java/classes/com.intellij.uiDesigner.core.GridConstraints
-
 https://www.jetbrains.com/help/idea/designing-gui-major-steps.html
-
 https://github.com/pRivAte12/android-component-explorer
-
 https://github.com/Link-Kou/intellij-treeInfotip
 https://intellij-support.jetbrains.com/hc/en-us/community/posts/115000316704-Create-custom-Tree-View-in-a-Tool-Window
+https://www.plugin-dev.com/intellij/editor/editor-open-close/
+https://docs.oracle.com/javase/tutorial/uiswing/index.html
+
 
 # java-design-pattern-helper-idea-plugin
 

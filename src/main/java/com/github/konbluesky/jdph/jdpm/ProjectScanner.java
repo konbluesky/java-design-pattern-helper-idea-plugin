@@ -39,10 +39,10 @@ public class ProjectScanner {
         try {
             Files.list(Paths.get(jdphFullPath))
                  .sorted()
-                 //过滤目录
+                 //Filter directory
                  .filter(path -> path.toFile()
                                      .isDirectory())
-                 //排除无效文件夹
+                 //Exclude invalid folders
                  .filter(path -> !excludeDirectory.contains(path.getName(path.getNameCount() - 1)
                                                                 .toFile()
                                                                 .getName()))

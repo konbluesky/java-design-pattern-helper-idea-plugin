@@ -13,8 +13,6 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.DialogWrapper;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiManager;
 import com.intellij.ui.EditorTextField;
 import com.intellij.ui.ListSpeedSearch;
 import com.intellij.ui.components.JBList;
@@ -94,13 +92,16 @@ public class DesignPatternDialog extends DialogWrapper {
 
             @Override
             public void valueChanged(ListSelectionEvent e) {
+
                 VirtualFile selectProject = LocalFileSystem.getInstance()
                                                            .findFileByIoFile(new File(jdphProject.getProject((String) projectList.getSelectedValue())
                                                                                                  .getFullPath()));
                 FileChooserDescriptor fileChooserDescriptor = FileChooserDescriptorFactory.createSingleFileOrFolderDescriptor()
                                                                                           .withRoots(selectProject);
                 fileSystemTree = new FileSystemTreeImpl(project, fileChooserDescriptor, fileTree, null, null, null);
+
                 fileSystemTree.updateTree();
+
                 NotifyUtils.notifyMessage(project, (String) projectList.getSelectedValue());
             }
         });
@@ -111,10 +112,10 @@ public class DesignPatternDialog extends DialogWrapper {
 
             @Override
             public void valueChanged(TreeSelectionEvent e) {
-                if (!fileSystemTree.getSelectedFile()
-                                   .isDirectory()) {
-//                    PsiFile psiFile = PsiManager.getInstance(project)
-//                                                .findFile(fileSystemTree.getSelectedFile());
+                if (fileSystemTree!=null&&fileSystemTree.getSelectedFile() != null && !fileSystemTree.getSelectedFile()
+                                                                               .isDirectory()) {
+                    //                    PsiFile psiFile = PsiManager.getInstance(project)
+                    //                                                .findFile(fileSystemTree.getSelectedFile());
                     editorTextField.setFileType(JavaFileType.INSTANCE);
                     try {
                         editorTextField.setText(new String(fileSystemTree.getSelectedFile()
@@ -141,5 +142,16 @@ public class DesignPatternDialog extends DialogWrapper {
         editorTextField.setText("Init TextField");
         new ListSpeedSearch(projectList);
         return contentPanel;
+    }
+
+    private void createUIComponents() {
+        Tree defaultTree = new Tree();
+
+        FileChooserDescriptor fileChooserDescriptor = FileChooserDescriptorFactory.createSingleLocalFileDescriptor()
+                                                                                  .withRoots(LocalFileSystem.getInstance()
+                                                                                                            .findFileByIoFile(new File(
+                                                                                                                    "/Users/konbluesky/work/java-design-patterns/abstract-document")));
+        FileSystemTreeImpl FileSystemTreeImpl = new FileSystemTreeImpl(this.project, fileChooserDescriptor, defaultTree, null, null, null);
+        this.fileTree = (Tree) FileSystemTreeImpl.getTree();
     }
 }
