@@ -1,5 +1,9 @@
 # java-design-pattern-helper-idea-plugin(JDPH)
 
+![Build](https://github.com/konbluesky/java-design-pattern-helper-idea-plugin/workflows/Build/badge.svg)
+[![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
+
 <!-- Plugin description -->
 
 A plug-in related to design patterns, intended to help engineers use common design patterns quickly. 
@@ -9,11 +13,7 @@ The design pattern quoted from [https://github.com/iluwatar/java-design-patterns
 <!-- Plugin description end -->
 
 ## Screenshot
-
-![Build](https://github.com/konbluesky/java-design-pattern-helper-idea-plugin/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-
+![mainDialog](./images/mainDialog-1.png "mainDialog")
 ## Planning
 
 - Super friendly GUI
