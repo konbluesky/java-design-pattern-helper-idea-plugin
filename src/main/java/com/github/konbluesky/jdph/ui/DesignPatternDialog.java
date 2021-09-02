@@ -82,10 +82,9 @@ public class DesignPatternDialog extends DialogWrapper {
         jdphProject = projectAnalyzer.analysis();
 
         DefaultListModel<String> lists = new DefaultListModel<>();
-        jdphProject.getProjects()
-                   .forEach(p -> {
-                       lists.addElement(p.getProjectName());
-                   });
+        jdphProject.getProjects().forEach(p -> {
+            lists.addElement(p.getProjectName());
+        });
         projectList.setModel(lists);
 
         projectList.addListSelectionListener(new ListSelectionListener() {
@@ -93,11 +92,9 @@ public class DesignPatternDialog extends DialogWrapper {
             @Override
             public void valueChanged(ListSelectionEvent e) {
 
-                VirtualFile selectProject = LocalFileSystem.getInstance()
-                                                           .findFileByIoFile(new File(jdphProject.getProject((String) projectList.getSelectedValue())
-                                                                                                 .getFullPath()));
-                FileChooserDescriptor fileChooserDescriptor = FileChooserDescriptorFactory.createSingleFileOrFolderDescriptor()
-                                                                                          .withRoots(selectProject);
+                VirtualFile selectProject = LocalFileSystem.getInstance().findFileByIoFile(new File(jdphProject.getProject((String) projectList.getSelectedValue())
+                                                                                                               .getFullPath()));
+                FileChooserDescriptor fileChooserDescriptor = FileChooserDescriptorFactory.createSingleFileOrFolderDescriptor().withRoots(selectProject);
                 fileSystemTree = new FileSystemTreeImpl(project, fileChooserDescriptor, fileTree, null, null, null);
 
                 fileSystemTree.updateTree();
@@ -112,14 +109,12 @@ public class DesignPatternDialog extends DialogWrapper {
 
             @Override
             public void valueChanged(TreeSelectionEvent e) {
-                if (fileSystemTree!=null&&fileSystemTree.getSelectedFile() != null && !fileSystemTree.getSelectedFile()
-                                                                               .isDirectory()) {
+                if (fileSystemTree != null && fileSystemTree.getSelectedFile() != null && !fileSystemTree.getSelectedFile().isDirectory()) {
                     //                    PsiFile psiFile = PsiManager.getInstance(project)
                     //                                                .findFile(fileSystemTree.getSelectedFile());
                     editorTextField.setFileType(JavaFileType.INSTANCE);
                     try {
-                        editorTextField.setText(new String(fileSystemTree.getSelectedFile()
-                                                                         .contentsToByteArray()));
+                        editorTextField.setText(new String(fileSystemTree.getSelectedFile().contentsToByteArray()));
                         editorTextField.setAutoscrolls(true);
                     } catch (IOException ex) {
                         ex.printStackTrace();
@@ -147,10 +142,9 @@ public class DesignPatternDialog extends DialogWrapper {
     private void createUIComponents() {
         Tree defaultTree = new Tree();
 
-        FileChooserDescriptor fileChooserDescriptor = FileChooserDescriptorFactory.createSingleLocalFileDescriptor()
-                                                                                  .withRoots(LocalFileSystem.getInstance()
-                                                                                                            .findFileByIoFile(new File(
-                                                                                                                    "/Users/konbluesky/work/java-design-patterns/abstract-document")));
+        FileChooserDescriptor fileChooserDescriptor = FileChooserDescriptorFactory.createSingleLocalFileDescriptor().withRoots(LocalFileSystem.getInstance()
+                                                                                                                                              .findFileByIoFile(new File(
+                                                                                                                                                      "/Users/konbluesky/work/java-design-patterns/abstract-document")));
         FileSystemTreeImpl FileSystemTreeImpl = new FileSystemTreeImpl(this.project, fileChooserDescriptor, defaultTree, null, null, null);
         this.fileTree = (Tree) FileSystemTreeImpl.getTree();
     }
