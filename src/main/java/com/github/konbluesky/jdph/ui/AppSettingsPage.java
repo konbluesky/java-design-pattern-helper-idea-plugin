@@ -27,6 +27,8 @@ public class AppSettingsPage implements Configurable {
 
     private JTextField jdpPathField;
 
+    private JButton btnGitClone;
+
     private Project project;
 
     private AppSettingsState settings;
